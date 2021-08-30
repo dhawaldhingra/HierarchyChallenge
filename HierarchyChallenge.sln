@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HierarchyChallenge", "Hiera
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HierarchyChallengeTests", "HierarchyChallengeTests\HierarchyChallengeTests.csproj", "{9029661E-B2F7-4F7D-A52A-2BFC25567C9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsole\TestConsoleApp.csproj", "{4BF32A5A-3C15-4DAD-9FD6-5C0A83F19FE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{4BF32A5A-3C15-4DAD-9FD6-5C0A83F19FE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
