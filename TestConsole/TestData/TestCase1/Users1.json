@@ -1,0 +1,87 @@
+[
+  {
+    "Id": 1,
+    "Name": "Tom",
+    "Role": 1
+  },
+  {
+    "Id": 2,
+    "Name": "Dick",
+    "Role": 1
+  },
+  {
+    "Id": 3,
+    "Name": "Harry",
+    "Role": 2
+  },
+  {
+    "Id": 4,
+    "Name": "Russell",
+    "Role": 2
+  },
+  {
+    "Id": 5,
+    "Name": "Peter",
+    "Role": 2
+  },
+  {
+    "Id": 6,
+    "Name": "Dr. Strange",
+    "Role": 11
+  },
+  {
+    "Id": 7,
+    "Name": "Thor Odinson",
+    "Role": 4
+  },
+  {
+    "Id": 8,
+    "Name": "Mobius",
+    "Role": 9
+  },
+  {
+    "Id": 9,
+    "Name": "Tony Stark",
+    "Role": 3
+  },
+  {
+    "Id": 10,
+    "Name": "Nick Fury",
+    "Role": 3
+  },
+  {
+    "Id": 11,
+    "Name": "Thanos",
+    "Role": 4
+  },
+  {
+    "Id": 12,
+    "Name": "Odin",
+    "Role": 10
+  },
+  {
+    "Id": 13,
+    "Name": "Friga",
+    "Role": 10
+  },
+  {
+    "Id": 14,
+    "Name": "Ancient One",
+    "Role": 7
+  },
+  {
+    "Id": 15,
+    "Name": "Steve Lang",
+    "Role": 7
+  },
+  {
+    "Id": 16,
+    "Name": "Peter Quill",
+    "Role": 8
+  },
+  {
+    "Id": 17,
+    "Name": "Galactus",
+    "Role": 6
+  }
+]

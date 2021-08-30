@@ -1,0 +1,57 @@
+[
+  {
+    "Id": 1,
+    "Name": "Admin",
+    "Parent": 0
+  },
+  {
+    "Id": 2,
+    "Name": "Domain Admin",
+    "Parent": 1
+  },
+  {
+    "Id": 3,
+    "Name": "Security Admin",
+    "Parent": 1
+  },
+  {
+    "Id": 4,
+    "Name": "Power User",
+    "Parent": 1
+  },
+  {
+    "Id": 5,
+    "Name": "System User",
+    "Parent": 2
+  },
+  {
+    "Id": 6,
+    "Name": "Remote User",
+    "Parent": 5
+  },
+  {
+    "Id": 7,
+    "Name": "Guest User",
+    "Parent": 5
+  },
+  {
+    "Id": 8,
+    "Name": "Restricted User",
+    "Parent": 5
+  },
+  {
+    "Id": 9,
+    "Name": "Trainee User",
+    "Parent": 5
+  },
+  {
+    "Id": 10,
+    "Name": "Trainer",
+    "Parent": 4
+  },
+  {
+    "Id": 11,
+    "Name": "Super User",
+    "Parent": 0
+  }
+]
