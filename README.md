@@ -46,4 +46,4 @@ This is a small command line application built which allows a user to run their 
 
 
 ## Test Results
-<img src="images/TestResults.PNG" alt="Test Results">
+<img src="image/TestResults.PNG" alt="Test Results">
