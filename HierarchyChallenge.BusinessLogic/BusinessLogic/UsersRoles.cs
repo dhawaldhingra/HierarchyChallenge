@@ -7,11 +7,17 @@ using System.Linq;
 namespace HierarchyChallenge.BusinessLogic
 {
     /// <summary>
-    /// This class represents mapping of
+    /// This class contains the implementation of GetSubordinates method which returns all direct and indirect subordinates of a given user
     /// </summary>
     public class UsersRoles
     {
+        /// <summary>
+        /// List of Users. The User class is present in DataObjects directory
+        /// </summary>
         public List<User> Users { get; set; }
+        /// <summary>
+        /// List of roles. The Role class is present in DataObjects directory
+        /// </summary>
         public List<Role> Roles { get; set; }
         
         /// <summary>
