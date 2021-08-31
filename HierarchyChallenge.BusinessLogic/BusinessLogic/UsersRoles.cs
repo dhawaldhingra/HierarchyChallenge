@@ -124,6 +124,7 @@ namespace HierarchyChallenge.BusinessLogic
         ///     1. UserIDs should be all unique
         ///     2. RoleIDs should be all unique
         ///     3. A role assigned to a user must be present in the Roles list
+        ///     4. The parent of a role is also present in the role list unless the role ID of parent is 0
         /// </summary>
         private bool ValidateInput()
         {
@@ -135,7 +136,7 @@ namespace HierarchyChallenge.BusinessLogic
             }
 
             // Check if any role IDs are duplicate
-            maxCount = this.Roles.GroupBy(role => role).Where(r => r.Count() > 1).Count();
+            maxCount = this.Roles.GroupBy(role => role.Id).Where(r => r.Count() > 1).Count();
             if(maxCount>0)
             {
                 return false;
@@ -151,7 +152,22 @@ namespace HierarchyChallenge.BusinessLogic
                 }
             });
 
-            return !missingRole;
+            //Check that the parent of a role is also present in the role list
+            bool parentRoleMissing = false;
+            this.Roles.ForEach(rl =>
+            {
+                if(rl.Parent!=0)
+                {
+                    if (this.Roles.Where(r => r.Id == rl.Parent).Count() == 0)
+                    {
+                        parentRoleMissing = true;
+                    }
+
+                }
+                  
+            });
+
+            return (!missingRole && !parentRoleMissing);
         }
     }
 }

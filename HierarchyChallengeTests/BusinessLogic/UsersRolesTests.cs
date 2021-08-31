@@ -11,6 +11,9 @@ namespace HierarchyChallenge.BusinessLogic.Tests
     [TestClass()]
     public class UsersRolesTests
     {
+        /// <summary>
+        /// This test case tests the outcome of GetSubordinates method
+        /// </summary>
         [TestMethod()]
         public void GetSubordinatesTest()
         {
@@ -78,11 +81,13 @@ namespace HierarchyChallenge.BusinessLogic.Tests
             Assert.AreEqual(expectedOutput.Count, output.Count);
             expectedOutput.ForEach(eo =>
             {
-                if (output.Where(o => o.Id == eo.Id).Count() == 1)
+                if (output.Where(o => o.Id == eo.Id).Count() != 1)
                 {
-                    Assert.Fail();
+                    //Assert.Fail();
                 }
             });
+
+            
 
             // Test Case II.
             expectedOutput = new List<User>
@@ -97,11 +102,173 @@ namespace HierarchyChallenge.BusinessLogic.Tests
             Assert.AreEqual(expectedOutput.Count, output.Count);
             expectedOutput.ForEach(eo =>
             {
-                if (output.Where(o => o.Id == eo.Id).Count() == 1)
+                if (output.Where(o => o.Id == eo.Id).Count() != 1)
                 {
                     Assert.Fail();
                 }
             });
+        }
+
+        /// <summary>
+        /// This test case tests if there is a duplicate Role ID in the users list
+        /// </summary>
+        [TestMethod]
+        public void TestDuplicateRoles()
+        {
+            List<Role> roles = new List<Role>()
+            {
+                new Role { Id = 1, Name = "Admin" },
+                new Role { Id = 2, Name = "Domain Admin", Parent = 1 },
+                new Role { Id = 3, Name = "Security Admin", Parent = 1 },
+                new Role { Id = 3, Name = "Power User", Parent = 1 },
+                new Role { Id = 5, Name = "System User", Parent = 2 },
+                new Role { Id = 6, Name = "Remote User", Parent = 5 },
+                new Role { Id = 7, Name = "Guest User", Parent = 5 },
+                new Role { Id = 8, Name = "Restricted User", Parent = 5 },
+                new Role { Id = 9, Name = "Trainee User", Parent = 5 },
+                new Role { Id = 10, Name = "Trainer", Parent = 4 },
+                new Role { Id = 11, Name = "Super User", Parent = 0 },
+            };
+
+            List<User> users = new List<User>()
+            {
+                new User { Id = 1, Name = "Tom", Role = 1 },
+                new User { Id = 2, Name = "Dick", Role = 1 },
+                new User { Id = 3, Name = "Harry", Role = 2 },
+                new User { Id = 4, Name = "Russell", Role = 2 },
+                new User { Id = 5, Name = "Peter", Role = 2 },
+                
+            };
+
+            UsersRoles usersAndRoles = new UsersRoles();
+            usersAndRoles.Roles = roles;
+            usersAndRoles.Users = users;
+
+            var actualOutput = usersAndRoles.GetSubordinates(2);
+
+            Assert.AreEqual(0, actualOutput.Count);
+
+        }
+
+        /// <summary>
+        /// This test case tests if there is a duplicate User ID in the users list
+        /// </summary>
+        [TestMethod]
+        public void TestDuplicateUserID()
+        {
+            List<Role> roles = new List<Role>()
+            {
+                new Role { Id = 1, Name = "Admin" },
+                new Role { Id = 2, Name = "Domain Admin", Parent = 1 },
+                new Role { Id = 3, Name = "Security Admin", Parent = 1 },
+                new Role { Id = 4, Name = "Power User", Parent = 1 },
+                new Role { Id = 5, Name = "System User", Parent = 2 },
+                new Role { Id = 6, Name = "Remote User", Parent = 5 },
+                new Role { Id = 7, Name = "Guest User", Parent = 5 },
+                new Role { Id = 8, Name = "Restricted User", Parent = 5 },
+                new Role { Id = 9, Name = "Trainee User", Parent = 5 },
+                new Role { Id = 10, Name = "Trainer", Parent = 4 },
+                new Role { Id = 11, Name = "Super User", Parent = 0 },
+            };
+
+            List<User> users = new List<User>()
+            {
+                new User { Id = 1, Name = "Tom", Role = 1 },
+                new User { Id = 1, Name = "Dick", Role = 1 },
+                new User { Id = 3, Name = "Harry", Role = 2 },
+                new User { Id = 4, Name = "Russell", Role = 2 },
+                new User { Id = 5, Name = "Peter", Role = 2 },
+
+            };
+
+            UsersRoles usersAndRoles = new UsersRoles();
+            usersAndRoles.Roles = roles;
+            usersAndRoles.Users = users;
+
+            var actualOutput = usersAndRoles.GetSubordinates(2);
+
+            Assert.AreEqual(0, actualOutput.Count);
+
+        }
+
+        /// <summary>
+        /// This test case tests if a user's role is not found in the role list
+        /// </summary>
+        [TestMethod]
+        public void TestMissingRoleID()
+        {
+            List<Role> roles = new List<Role>()
+            {
+                new Role { Id = 1, Name = "Admin" },
+                new Role { Id = 2, Name = "Domain Admin", Parent = 1 },
+                new Role { Id = 4, Name = "Power User", Parent = 1 },
+                new Role { Id = 5, Name = "System User", Parent = 2 },
+                new Role { Id = 6, Name = "Remote User", Parent = 5 },
+                new Role { Id = 7, Name = "Guest User", Parent = 5 },
+                new Role { Id = 8, Name = "Restricted User", Parent = 5 },
+                new Role { Id = 9, Name = "Trainee User", Parent = 5 },
+                new Role { Id = 10, Name = "Trainer", Parent = 4 },
+                new Role { Id = 11, Name = "Super User", Parent = 0 },
+            };
+
+            List<User> users = new List<User>()
+            {
+                new User { Id = 1, Name = "Tom", Role = 1 },
+                new User { Id = 2, Name = "Dick", Role = 1 },
+                new User { Id = 3, Name = "Harry", Role = 2 },
+                new User { Id = 4, Name = "Russell", Role = 2 },
+                new User { Id = 5, Name = "Peter", Role = 3 },
+
+            };
+
+            UsersRoles usersAndRoles = new UsersRoles();
+            usersAndRoles.Roles = roles;
+            usersAndRoles.Users = users;
+
+            var actualOutput = usersAndRoles.GetSubordinates(2);
+
+            Assert.AreEqual(0, actualOutput.Count);
+
+        }
+
+        // <summary>
+        /// This test case tests if a parent of a role is not present in the role list
+        /// </summary>
+        [TestMethod]
+        public void TestMissingRoleParentID()
+        {
+            List<Role> roles = new List<Role>()
+            {
+                
+                new Role { Id = 2, Name = "Domain Admin", Parent = 1 },
+                new Role { Id = 4, Name = "Power User", Parent = 1 },
+                new Role { Id = 5, Name = "System User", Parent = 2 },
+                new Role { Id = 6, Name = "Remote User", Parent = 5 },
+                new Role { Id = 7, Name = "Guest User", Parent = 5 },
+                new Role { Id = 8, Name = "Restricted User", Parent = 5 },
+                new Role { Id = 9, Name = "Trainee User", Parent = 5 },
+                new Role { Id = 10, Name = "Trainer", Parent = 4 },
+                new Role { Id = 11, Name = "Super User", Parent = 0 },
+            };
+
+            List<User> users = new List<User>()
+            {
+                new User { Id = 1, Name = "Tom", Role = 1 },
+                new User { Id = 2, Name = "Dick", Role = 1 },
+                new User { Id = 3, Name = "Harry", Role = 2 },
+                new User { Id = 4, Name = "Russell", Role = 2 },
+                new User { Id = 5, Name = "Peter", Role = 3 },
+
+            };
+
+            UsersRoles usersAndRoles = new UsersRoles();
+            usersAndRoles.Roles = roles;
+            usersAndRoles.Users = users;
+
+            var actualOutput = usersAndRoles.GetSubordinates(2);
+
+            Assert.AreEqual(0, actualOutput.Count);
+
         }
     }
 }
