@@ -13,13 +13,6 @@
         <li><a href="#solution-structure">Test Outcome</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#usage">Usage</a></li>
-      </ul>
-    </li>        
   </ol>
 </details>
 
@@ -53,3 +46,4 @@ This is a small command line application built which allows a user to run their 
 
 
 ## Test Results
+<img src="images/TestResults.PNG" alt="Test Results">
